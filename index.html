@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Gourmet</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('fondoprincipal.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+       
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            border-bottom: 2px solid #3e8e41;
+        }
+
+        
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            margin-top: 20px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+       
+        .carousel {
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        
+        .testimonios {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .testimonio {
+            width: 30%;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonio:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonio img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .plato {
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plato:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .plato img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .plato button {
+            background-color: #3e8e41;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .plato button:hover {
+            background-color: #45a049;
+        }
+
+        
+        #reservas {
+            width: 50%;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: rgba(250, 250, 250, 0.6);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #3e8e41;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal button {
+            background-color: #3e8e41;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #45a049;
+        }
+
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+        @media (min-width: 1024px) {
+    nav {
+        justify-content: space-around;
+    }
+
+    .testimonio {
+        width: 30%; 
+    }
+
+    .menu {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    #reservas {
+        width: 60%;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#menu">Menú</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    
+    <header>
+        <h1>Restaurante Gourmet</h1>
+        <p>¡Disfruta de una experiencia gastronómica única, donde cada plato es una obra maestra!</p>
+    </header>
+
+    
+    <div class="carousel">
+        <img src="plato1.jpg" alt="Plato 1">
+        <img src="plato2.jpg" alt="Plato 2">
+        <img src="plato3.jpg" alt="Plato 3">
+    </div>
+
+    
+    <section class="testimonios">
+        <div class="testimonio">
+            <img src="cliente1.jpg" alt="Cliente 1">
+            <h3>Juan Pérez</h3>
+            <p>"Una experiencia deliciosa. El servicio fue excelente y los platos, exquisitos."</p>
+        </div>
+        <div class="testimonio">
+            <img src="cliente2.jpg" alt="Cliente 2">
+            <h3>María López</h3>
+            <p>"Un lugar perfecto para celebrar con amigos y familia. ¡Volveré pronto!"</p>
+        </div>
+        <div class="testimonio">
+            <img src="cliente3.jpg" alt="Cliente 3">
+            <h3>Carlos Gómez</h3>
+            <p>"Los mejores platos de la ciudad. ¡100% recomendado!"</p>
+        </div>
+    </section>
+
+    
+    <section id="menu" class="menu">
+        <div class="plato">
+            <img src="plato1.jpg" alt="Plato 1">
+            <h3>Paella</h3>
+            <p>$25.00</p>
+            <button>Ver Detalles</button>
+        </div>
+        <div class="plato">
+            <img src="plato2.jpg" alt="Plato 2">
+            <h3>Pizza</h3>
+            <p>$20.00</p>
+            <button>Ver Detalles</button>
+        </div>
+        <div class="plato">
+            <img src="plato3.jpg" alt="Plato 3">
+            <h3>Ensalada</h3>
+            <p>$15.00</p>
+            <button>Ver Detalles</button>
+        </div>
+    </section>
+
+    
+    <section id="reservas">
+        <h2>Reserva tu mesa</h2>
+        <form id="formReserva">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" name="hora" required>
+
+            <label for="personas">Número de personas</label>
+            <input type="number" id="personas" name="personas" required>
+
+            <button type="submit">Confirmar Reserva</button>
+        </form>
+    </section>
+
+    
+<section id="contacto" style="margin-top: 50px; padding: 20px; background-color: rgba(250, 250, 250, 0.8);">
+    <h2 style="text-align: center; font-size: 2em; margin-bottom: 20px;">Contáctanos</h2>
+    <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+        Estamos aquí para ayudarte. Escríbenos o visítanos para disfrutar de una experiencia inolvidable.
+    </p>
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        
+        <div style="flex: 1; min-width: 300px; margin: 10px; text-align: center;">
+            <h3>Dirección</h3>
+            <p>Av. Gourmet 123, Centro Gastronómico, Ciudad</p>
+        </div>
+        <div style="flex: 1; min-width: 300px; margin: 10px; text-align: center;">
+            <h3>Teléfono</h3>
+            <p><a href="tel:+1234567890" style="text-decoration: none; color: #3e8e41;">+1 234 567 890</a></p>
+        </div>
+        <div style="flex: 1; min-width: 300px; margin: 10px; text-align: center;">
+            <h3>Email</h3>
+            <p><a href="mailto:info@restaurantegourmet.com" style="text-decoration: none; color: #3e8e41;">info@restaurantegourmet.com</a></p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+        <h3>Síguenos en Redes Sociales</h3>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <img src="ig.png" alt="Instagram" style="width: 40px; height: 40px;">
+            </a>
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <img src="fb.png" alt="Facebook" style="width: 40px; height: 40px;">
+            </a>
+            <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp">
+                <img src="whasssp.png" alt="WhatsApp" style="width: 40px; height: 40px;">
+            </a>
+        </div>
+    </div>
+</section>
+
+            
+    </section>
+
+   
+    <footer>
+        <p>&copy; 2024 Restaurante Gourmet. Todos los derechos reservados.</p>
+    </footer>
+
+    
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function moveToNextImage() {
+            
+            images[currentIndex].style.transform = 'translateX(-100%)';
+            
+            currentIndex = (currentIndex + 1) % images.length;
+            
+            images[currentIndex].style.transform = 'translateX(0)';
+        }
+
+        
+        setInterval(moveToNextImage, 3000); 
+
+        
+        images[0].style.transform = 'translateX(0)';
+    </script>
+
+</body>
+</html>
